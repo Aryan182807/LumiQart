@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Login & Registration</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+
+  <div class="auth-container">
+    
+    <!-- =================  EXISTING USER LOGIN ================= -->
+    <div class="form-box" id="login-box">
+      <h2>Welcome Back!</h2>
+      <p class="subtitle">Please enter your details to sign in.</p>
+
+      <!-- Google Sign-In Button -->
+      <button class="google-btn" onclick="googleSignIn()">
+        <svg viewBox="0 0 48 48">
+          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        </svg>
+        Sign in with Google
+      </button>
+
+      <div class="divider">
+        <span>OR</span>
+      </div>
+
+      <!-- Regular Email Login Form -->
+      <form onsubmit="handleLogin(event)">
+        <div class="input-group">
+          <label for="login-email">Email Address</label>
+          <input type="email" id="login-email" placeholder="name@example.com" required>
+        </div>
+
+        <div class="input-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" placeholder="••••••••" required>
+        </div>
+
+        <div class="extra-options">
+          <label class="remember-me">
+            <input type="checkbox"> Remember me
+          </label>
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="submit-btn">Sign In</button>
+      </form>
+
+      <p class="switch-form-text">
+        Don't have an account? 
+        <button type="button" class="text-link-btn" onclick="toggleForm('signup')">Create New Account</button>
+      </p>
+    </div>
+
+    <!-- ================= NEW USER SIGN UP ================= -->
+    <div class="form-box" id="signup-box" style="display: none;">
+      <h2>Create an Account</h2>
+      <p class="subtitle">Enter your information to get started.</p>
+
+      <!-- Google Sign-Up Button -->
+      <button class="google-btn" onclick="googleSignIn()">
+        <svg viewBox="0 0 48 48">
+          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        </svg>
+        Sign up with Google
+      </button>
+
+      <div class="divider">
+        <span>OR</span>
+      </div>
+
+      <!-- Registration Form -->
+      <form onsubmit="handleSignup(event)">
+        <div class="input-group">
+          <label for="signup-name">Full Name</label>
+          <input type="text" id="signup-name" placeholder="John Doe" required>
+        </div>
+
+        <div class="input-group">
+          <label for="signup-email">Email Address</label>
+          <input type="email" id="signup-email" placeholder="name@example.com" required>
+        </div>
+
+        <div class="input-group">
+          <label for="signup-password">Create Password</label>
+          <input type="password" id="signup-password" placeholder="At least 6 characters" minlength="6" required>
+        </div>
+
+        <div class="input-group">
+          <label for="signup-confirm-password">Confirm Password</label>
+          <input type="password" id="signup-confirm-password" placeholder="Re-enter password" required>
+        </div>
+
+        <button type="submit" class="submit-btn">Create Account</button>
+      </form>
+
+      <p class="switch-form-text">
+        Already have an account? 
+        <button type="button" class="text-link-btn" onclick="toggleForm('login')">Sign In</button>
+      </p>
+    </div>
+
+  </div>
+
+  <!-- JavaScript for Form Toggling & Actions -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<script>
+const GOOGLE_CLIENT_ID = "1076101879548-r81t1l3esqlgn9footucbn7g5opv2ofk.apps.googleusercontent.com";
+
+// Login aur Signup forms switch karna
+function toggleForm(formType) {
+    const loginBox = document.getElementById("login-box");
+    const signupBox = document.getElementById("signup-box");
+
+    loginBox.style.display = formType === "signup" ? "none" : "block";
+    signupBox.style.display = formType === "signup" ? "block" : "none";
+}
+
+// Accounts browser storage se lena
+function getAccounts() {
+    return JSON.parse(localStorage.getItem("lumiqart_accounts") || "[]");
+}
+
+// Naya account create karna
+function handleSignup(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("signup-name").value.trim();
+    const email = document.getElementById("signup-email").value.trim().toLowerCase();
+    const password = document.getElementById("signup-password").value;
+    const confirmPassword = document.getElementById("signup-confirm-password").value;
+
+    if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+    }
+
+    const accounts = getAccounts();
+
+    if (accounts.some(account => account.email === email)) {
+        alert("This email is already registered. Please sign in.");
+        return;
+    }
+
+    accounts.push({ name, email, password });
+    localStorage.setItem("lumiqart_accounts", JSON.stringify(accounts));
+
+    alert("Account created successfully! Please sign in.");
+    document.querySelector("#signup-box form").reset();
+    toggleForm("login");
+}
+
+// Existing account se login
+function handleLogin(event) {
+    event.preventDefault();
+
+    const email = document.getElementById("login-email").value.trim().toLowerCase();
+    const password = document.getElementById("login-password").value;
+
+    const account = getAccounts().find(
+        user => user.email === email && user.password === password
+    );
+
+    if (!account) {
+        alert("Invalid email or password.");
+        return;
+    }
+
+    localStorage.setItem("lumiqart_current_user", JSON.stringify({
+        name: account.name,
+        email: account.email
+    }));
+
+    alert("Welcome back, " + account.name + "!");
+    window.location.href = "index.html";
+}
+
+// Google Login initialize karna
+function initializeGoogleSignIn() {
+    if (!window.google?.accounts?.id) {
+        return;
+    }
+
+    if (GOOGLE_CLIENT_ID === "1076101879548-r81t1l3esqlgn9footucbn7g5opv2ofk.apps.googleusercontent.com") {
+        console.warn("Please add your Google OAuth Client ID.");
+        return;
+    }
+
+    google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback: handleGoogleCredential
+    });
+}
+
+// Google se mile credential ko handle karna
+function handleGoogleCredential(response) {
+    try {
+        // ID token ka payload read karna.
+        // Production mein token ko backend par verify karna zaroori hai.
+        const parts = response.credential.split(".");
+        const payload = JSON.parse(atob(
+            parts[1].replace(/-/g, "+").replace(/_/g, "/")
+        ));
+
+        const email = payload.email?.toLowerCase();
+        const name = payload.name || "LumiQArt User";
+
+        if (!email || !payload.email_verified) {
+            alert("Please use a verified Google account.");
+            return;
+        }
+
+        localStorage.setItem("lumiqart_current_user", JSON.stringify({
+            name,
+            email,
+            provider: "google"
+        }));
+
+        alert("Google sign-in successful!");
+        window.location.href = "index.html";
+    } catch (error) {
+        console.error(error);
+        alert("Google sign-in failed. Please try again.");
+    }
+}
+
+// Google account selection popup/button
+function googleSignIn() {
+    if (!window.google?.accounts?.id) {
+        alert("Google Sign-In is still loading. Please try again.");
+        return;
+    }
+
+    if (GOOGLE_CLIENT_ID === "1076101879548-r81t1l3esqlgn9footucbn7g5opv2ofk.apps.googleusercontent.com") {
+        alert("Please configure your Google Client ID first.");
+        return;
+    }
+
+    google.accounts.id.prompt();
+}
+
+window.addEventListener("load", () => {
+    initializeGoogleSignIn();
+});
+</script>
+
+</body>
+</html>

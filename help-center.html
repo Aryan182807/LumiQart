@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lumiqart | Help Center</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+        <body>
+<header class="product-header">
+    <h2>Lumiqart Help Center</h2>
+    <a href="index.html">← Back to Home</a>
+</header>
+<main class="info-page">
+    <h1>Help Center</h1>
+    <p>Chat with Lumiqart support or use the contact details below.</p>
+    <div class="support-layout">
+<section class="info-card chat-box">
+    <h2>💬 Chat with Lumiqart</h2>
+    <div id="chatMessages" class="chat-messages">
+        <div class="chat-message support">Hello! Welcome to Lumiqart support. How can we help you?</div>
+    </div>
+    <form id="chatForm" class="chat-form">
+        <input id="chatInput" placeholder="Type your message..." autocomplete="off" required>
+        <button type="submit">Send</button>
+    </form>
+</section>
+<section class="info-card" id="contact">
+    <h2>Contact Details</h2>
+    <div class="contact-item">
+        <strong>Customer Support</strong>
+        <span>Mon–Sat, 10:00 AM–6:00 PM</span>
+    </div><div class="contact-item">
+        <strong>Email</strong>
+        <span>support@lumiqart.com</span>
+    </div>
+    <div class="contact-item">
+        <strong>Phone</strong>
+        <span>+91 98765 43210</span>
+    </div>
+    <div class="contact-item">
+        <strong>Address</strong>
+        <span>Lumiqart Support Centre, India</span>
+    </div>
+    <p style="font-size:12px;margin-top:20px;">The email, phone and address above are demo contact details for this project and can be replaced with your real company details.</p>
+</section>
+</div>
+</main>
+<footer class="simple-footer">
+    <p>© 2026 Lumiqart. All Rights Reserved.</p>
+    <div class="simple-footer-links">
+        <a href="index.html">Home</a>
+        <a href="shipping-delivery.html">Shipping & Delivery</a>
+        <a href="return-policy.html">Return Policy</a>
+    </div>
+</footer>
+<script>
+const messages=JSON.parse(localStorage.getItem('lumiqartChat')||'[]'); const box=document.getElementById('chatMessages'); messages.forEach(m=>addMessage(m.text,m.type)); function addMessage(text,type){const div=document.createElement('div');div.className='chat-message '+type;div.textContent=text;box.appendChild(div);box.scrollTop=box.scrollHeight;} document.getElementById('chatForm').addEventListener('submit',function(e){e.preventDefault();const input=document.getElementById('chatInput');const text=input.value.trim();if(!text)return;addMessage(text,'user');messages.push({text,type:'user'});setTimeout(()=>{const reply='Thanks for contacting Lumiqart. Our support team will respond shortly.';addMessage(reply,'support');messages.push({text:reply,type:'support'});localStorage.setItem('lumiqartChat',JSON.stringify(messages));},500);input.value='';localStorage.setItem('lumiqartChat',JSON.stringify(messages));});
+</script>
+</body></html>

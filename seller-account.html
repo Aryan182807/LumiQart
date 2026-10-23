@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumiqart | Seller Account</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="product-header">
+    <h2>Lumiqart Seller</h2>
+    <a href="index.html">← Back to Home</a>
+</header>
+
+<main class="info-page">
+<h1>Create Seller Account</h1>
+<p>Join Lumiqart as a seller and list your fitness and wellness products.</p>
+<div class="info-card">
+
+<form id="sellerForm">
+<label>Full Name</label><input id="sellerName" required placeholder="Enter your name">
+<label>Email</label>
+<input id="sellerEmail" type="email" required placeholder="Enter email">
+<label>Phone</label>
+<input id="sellerPhone" required placeholder="10-digit mobile number" maxlength="10">
+<label>Business / Store Name</label>
+<input id="storeName" required placeholder="Your store name">
+<label>Password</label>
+<input id="sellerPassword" type="password" required minlength="6" placeholder="Create password">
+<button type="submit" class="checkout-btn" style="margin-top:18px;">Create Seller Account</button>
+</form>
+<p id="sellerMessage" style="margin-top:15px;font-weight:700;"></p>
+</div>
+</main>
+<footer class="simple-footer">
+    <p>© 2026 Lumiqart. All Rights Reserved.</p>
+    <div class="simple-footer-links">
+        <a href="index.html">Home</a>
+        <a href="help-center.html">Help Center</a>
+        <a href="privacy.html">Privacy Policy</a>
+    </div>
+</footer>
+<script>
+document.getElementById('sellerForm').addEventListener('submit', function(e){e.preventDefault(); const phone=document.getElementById('sellerPhone').value; if(!/^[0-9]{10}$/.test(phone)){alert('Please enter a valid 10-digit phone number.');return;} localStorage.setItem('lumiqartSeller', JSON.stringify({name:document.getElementById('sellerName').value,email:document.getElementById('sellerEmail').value,phone,store:document.getElementById('storeName').value})); document.getElementById('sellerMessage').textContent='Seller account request created successfully (demo).';});
+</script>
+</body>
+</html>

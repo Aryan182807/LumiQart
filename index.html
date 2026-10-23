@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LumiQArt | Art Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <!-- Logo -->
+        <div class="logo">
+            Lumi<span>QArt</span>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <a href="about.html">About Us</a>
+               <li><a href="help-center.html#contact">Contact</a></li>
+            </ul>
+           <div id="auth-nav">
+    <a href="login.html" class="nav-login-btn">Login</a>
+</div>
+        </nav>
+
+        <div class="address-btn" id="openModalBtn">
+            <span class="icon">📍</span>
+            <div class="address-info">
+                <small>Deliver to</small>
+                <span id="navAddressDisplay">Select Address</span>
+            </div>
+        </div>
+
+        <!-- Cart Button -->
+        <div class="nav-actions">
+            <a href="cart.html" class="cart-btn">🛒 Cart (0)</a>
+        </div>
+    </header>
+
+    <!-- Address Popup -->
+<div class="address-modal" id="addressModal">
+
+    <div class="address-modal-content">
+
+        <span class="close-btn" id="closeModalBtn">&times;</span>
+
+        <h2>📍 Add Delivery Address</h2>
+        <p>Enter your complete delivery address</p>
+
+        <form id="addressForm">
+
+            <!-- Address -->
+            <label>Address</label>
+            <input 
+                type="text" 
+                id="addressInput"
+                placeholder="House No., Building, Area"
+                required
+            >
+
+            <!-- Street -->
+            <label>Street</label>
+            <input 
+                type="text" 
+                id="streetInput"
+                placeholder="Enter street name"
+                required
+            >
+
+            <!-- Landmark -->
+            <label>Landmark</label>
+            <input 
+                type="text" 
+                id="landmarkInput"
+                placeholder="Near school, temple, mall etc."
+            >
+
+            <!-- District + Pincode -->
+            <div class="form-row">
+
+                <div>
+                    <label>District</label>
+                    <input 
+                        type="text" 
+                        id="districtInput"
+                        placeholder="District"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label>Pincode</label>
+                    <input 
+                        type="text" 
+                        id="pincodeInput"
+                        placeholder="6-digit Pincode"
+                        maxlength="6"
+                        required
+                    >
+                </div>
+
+            </div>
+
+            <!-- State -->
+            <label>State</label>
+            <select id="stateInput" required>
+
+                <option value="">Select State</option>
+
+                <option>Andhra Pradesh</option>
+                <option>Arunachal Pradesh</option>
+                <option>Assam</option>
+                <option>Bihar</option>
+                <option>Chhattisgarh</option>
+                <option>Goa</option>
+                <option>Gujarat</option>
+                <option>Haryana</option>
+                <option>Himachal Pradesh</option>
+                <option>Jharkhand</option>
+                <option>Karnataka</option>
+                <option>Kerala</option>
+                <option>Madhya Pradesh</option>
+                <option>Maharashtra</option>
+                <option>Manipur</option>
+                <option>Meghalaya</option>
+                <option>Mizoram</option>
+                <option>Nagaland</option>
+                <option>Odisha</option>
+                <option>Punjab</option>
+                <option>Rajasthan</option>
+                <option>Sikkim</option>
+                <option>Tamil Nadu</option>
+                <option>Telangana</option>
+                <option>Tripura</option>
+                <option>Uttar Pradesh</option>
+                <option>Uttarakhand</option>
+                <option>West Bengal</option>
+                <option>Delhi</option>
+
+            </select>
+
+            <button type="submit" id="saveAddressBtn">
+                Save Address
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const openModalBtn = document.getElementById("openModalBtn");
+const addressModal = document.getElementById("addressModal");
+const closeModalBtn = document.getElementById("closeModalBtn");
+const addressForm = document.getElementById("addressForm");
+const navAddressDisplay = document.getElementById("navAddressDisplay");
+
+
+// Open Address Popup
+openModalBtn.addEventListener("click", function () {
+    addressModal.style.display = "flex";
+});
+
+
+// Close Popup
+closeModalBtn.addEventListener("click", function () {
+    addressModal.style.display = "none";
+});
+
+
+// Save Address
+addressForm.addEventListener("submit", function (event) {
+
+    event.preventDefault();
+
+    const address = document.getElementById("addressInput").value;
+    const street = document.getElementById("streetInput").value;
+    const landmark = document.getElementById("landmarkInput").value;
+    const district = document.getElementById("districtInput").value;
+    const pincode = document.getElementById("pincodeInput").value;
+    const state = document.getElementById("stateInput").value;
+
+
+    // Pincode validation
+    if (!/^[0-9]{6}$/.test(pincode)) {
+        alert("Please enter a valid 6-digit pincode");
+        return;
+    }
+
+
+    // Address display
+    navAddressDisplay.textContent =
+        district + ", " + state;
+
+
+    // Close popup
+    addressModal.style.display = "none";
+
+
+    alert("Address saved successfully!");
+
+});
+
+
+// Close popup when clicking outside
+window.addEventListener("click", function (event) {
+
+    if (event.target === addressModal) {
+        addressModal.style.display = "none";
+    }
+
+});
+
+</script>
+
+
+<!-- Product Categories -->
+
+<section class="categories" id="categories">
+
+    <h2>Shop By Category</h2>
+
+    <div class="category-container">
+
+        <button class="category" type="button" data-category="Whey Protein">
+            <div class="category-image">
+                <img src="https://ussupplements.in/wp-content/uploads/2023/01/IMG_4182.webp" alt="Whey Protein">
+            </div>
+            <h3>Whey Protein</h3>
+        </button>
+
+        <button class="category" type="button" data-category="Creatine">
+            <div class="category-image">
+                <img src="https://m.media-amazon.com/images/I/612xIY6M7GL.jpg" alt="Creatine">
+            </div>
+            <h3>Creatine</h3>
+        </button>
+
+        <button class="category" type="button" data-category="Pre Workout">
+            <div class="category-image">
+                <img src="https://img6.hkrtcdn.com/39080/prd_3907915-MuscleBlaze-PRE-Workout-200-0.22-lb-Fruit-Splash_o.jpg" alt="Pre Workout">
+            </div>
+            <h3>Pre Workout</h3>
+        </button>
+
+        <button class="category" type="button" data-category="Protein Oats">
+            <div class="category-image">
+                <img src="https://m.media-amazon.com/images/I/812ChxvbYiL._AC_UF894,1000_QL80_.jpg" alt="Protein Oats">
+            </div>
+            <h3>Protein Oats</h3>
+        </button>
+
+        <button class="category" type="button" data-category="Peanut Butter">
+            <div class="category-image">
+                <img src="https://myfitness.in/cdn/shop/files/510_smooth.png?v=1787218312&width=720" alt="Peanut Butter">
+            </div>
+            <h3>Peanut Butter</h3>
+        </button>
+
+        <button class="category" type="button" data-category="Mass Gainer">
+            <div class="category-image">
+                <img src="https://m.media-amazon.com/images/I/61DQLVMdwsL._AC_UF1000,1000_QL80_.jpg" alt="Mass Gainer">
+            </div>
+            <h3>Mass Gainer</h3>
+        </button>
+
+        <button class="category" type="button" data-category="Electrolytes">
+            <div class="category-image">
+                <img src="https://m.media-amazon.com/images/I/81RR8V0lL-L._AC_UF1000,1000_QL80_.jpg" alt="Electrolytes">
+            </div>
+            <h3>Electrolytes</h3>
+        </button>
+
+        <button class="category" type="button" data-category="Multivitamins">
+            <div class="category-image">
+                <img src="https://m.media-amazon.com/images/I/61CVm4xU1SL._AC_UF1000,1000_QL80_.jpg" alt="Multivitamins">
+            </div>
+            <h3>Multivitamins</h3>
+        </button>
+
+        <button class="category" type="button" data-category="Protein Bar">
+            <div class="category-image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhpl7SzMUYt5ncBsLBsOQdfkNzMsXZ7wG10iMabcspXvn1rYII_RYu2yra&s=10" alt="Protein Bar">
+            </div>
+            <h3>Protein Bar</h3>
+        </button>
+
+        <button class="category" type="button" data-category="BCAA">
+            <div class="category-image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSwiXWJ_JcokbvNDuoXkyyc73Ut7xz2FYWnPpQAzEP5UP-oJdBGcq8vyg&s=10" alt="BCAA">
+            </div>
+            <h3>BCAA</h3>
+        </button>
+
+    </div>
+
+    <p id="category-filter-note" class="category-filter-note">Showing all products</p>
+    <button id="show-all-products" class="show-all-products" type="button">Show All Products</button>
+
+</section>
+
+<!-- ================= PRODUCTS SECTION ================= -->
+
+<section class="products">
+
+    <h2>Popular Supplements</h2>
+    <p class="section-subtitle">
+        Best supplements for your fitness journey
+    </p>
+
+    <div class="product-container">
+
+        <!-- Product 1 -->
+        <div class="product-card">
+
+            <img src="https://m.media-amazon.com/images/I/61h12vwOM-L._AC_UF1000,1000_QL80_.jpg"
+                 alt="Whey Protein">
+
+            <div class="product-info">
+
+                <span class="product-category">Whey Protein</span>
+
+                <h3>One Science Premium Whey Protein</h3>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐⭐
+                </div>
+
+                <p class="price">₹3,499</p>
+
+               <a href="product1.html" class="details-btn">
+    View Details
+</a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Product 2 -->
+        <div class="product-card">
+
+            <img src="https://rukminim2.flixcart.com/image/480/640/xif0q/protein-supplement/o/l/i/-original-imahjrp7n3yafun8.jpeg?q=90"
+                 alt="Creatine">
+
+            <div class="product-info">
+
+                <span class="product-category">Creatine</span>
+
+                <h3>WellCore Creatine Monohydrate</h3>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐
+                </div>
+
+                <p class="price">₹499</p>
+
+               <a href="product2.html" class="details-btn">View Details</a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Product 3 -->
+        <div class="product-card">
+
+            <img src="https://img6.hkrtcdn.com/39080/prd_3907915-MuscleBlaze-PRE-Workout-200-0.22-lb-Fruit-Splash_o.jpg"
+                 alt="Pre Workout">
+
+            <div class="product-info">
+
+                <span class="product-category">Pre Workout</span>
+
+                <h3>Muscle Blaze
+                    Pre Workout</h3>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐
+                </div>
+
+                <p class="price">₹599</p>
+
+              <a href="product3.html" class="details-btn">View Details</a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Product 4 -->
+        <div class="product-card">
+
+            <img src="https://m.media-amazon.com/images/I/71XSbFkYmRL._AC_UF894,1000_QL80_.jpg"
+                 alt="Protein Oats">
+
+            <div class="product-info">
+
+                <span class="product-category">Protein Oats</span>
+
+                <h3>Pintola High Protein Oats</h3>
+
+                <div class="rating">
+                    ⭐⭐⭐
+                </div>
+
+                <p class="price">₹459</p>
+
+               <a href="product4.html" class="details-btn">View Details</a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Product 5 -->
+        <div class="product-card">
+
+            <img src="https://rukminim3.flixcart.com/image/480/640/xif0q/jam-spread/i/o/x/-original-imahcyj6ykqn8fps.jpeg?q=90"
+                 alt="Peanut Butter">
+
+            <div class="product-info">
+
+                <span class="product-category">Peanut Butter</span>
+
+                <h3>MB Peanut Butter</h3>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐
+                </div>
+
+                <p class="price">₹399</p>
+
+                <a href="product5.html" class="details-btn">View Details</a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Product 6 -->
+        <div class="product-card">
+
+            <img src="https://m.media-amazon.com/images/I/71V6SjVnocL._AC_UF1000,1000_QL80_.jpg"
+                 alt="Mass Gainer">
+
+            <div class="product-info">
+
+                <span class="product-category">Mass Gainer</span>
+
+                <h3>One Science Mass Gainer</h3>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐⭐
+                </div>
+
+                <p class="price">₹1,099</p>
+
+               <a href="product6.html" class="details-btn">View Details</a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Product 7 -->
+        <div class="product-card">
+
+            <img src="https://m.media-amazon.com/images/I/61CVm4xU1SL._AC_UF1000,1000_QL80_.jpg"
+                 alt="Multivitamin">
+
+            <div class="product-info">
+
+                <span class="product-category">Electrolytes</span>
+
+                <h3>Hydration Electrolyte Mix</h3>
+
+                <div class="rating">
+                    ⭐⭐⭐
+                </div>
+
+                <p class="price">₹129</p>
+
+                <a href="product7.html" class="details-btn">View Details</a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Product 8 -->
+        <div class="product-card">
+
+            <img src=""
+                 alt="Protein Bar">
+
+            <div class="product-info">
+
+                <span class="product-category">Multivitamins</span>
+
+                <h3>MB Multivitamins</h3>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐⭐
+                </div>
+
+                <p class="price">₹567</p>
+
+               <a href="product8.html" class="details-btn">View Details</a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Product 9 -->
+        <div class="product-card">
+
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhpl7SzMUYt5ncBsLBsOQdfkNzMsXZ7wG10iMabcspXvn1rYII_RYu2yra&s=10"
+                 alt="Multivitamin">
+
+            <div class="product-info">
+
+                <span class="product-category">Protien Bar</span>
+
+                <h3>Yoga Bar Protien Bar</h3>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐
+                </div>
+
+                <p class="price">₹174</p>
+
+                <a href="product9.html" class="details-btn">View Details</a>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- Product 10 -->
+        <div class="product-card">
+
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSwiXWJ_JcokbvNDuoXkyyc73Ut7xz2FYWnPpQAzEP5UP-oJdBGcq8vyg&s=10"
+                 alt="BCAA">
+
+            <div class="product-info">
+
+                <span class="product-category">BCAA</span>
+
+                <h3>Recovery BCAA Powder</h3>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐
+                </div>
+
+                <p class="price">₹949</p>
+
+               <a href="product10.html" class="details-btn">View Details</a>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- View More -->
+
+    <div class="view-more-container">
+
+        <button class="view-more-btn">
+            View More Products →
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <!-- Stay With Us Box -->
+    <div class="stay-box">
+
+        <h2>Stay With Us On</h2>
+
+        <p>Follow us and stay updated with the latest products and offers.</p>
+
+        <div class="social-buttons">
+
+            <!-- Instagram -->
+            <a href="#" class="social instagram" title="Instagram">
+                <span>◎</span>
+            </a>
+
+            <!-- Twitter -->
+            <a href="#" class="social twitter" title="Twitter">
+                <span>𝕏</span>
+            </a>
+
+            <!-- YouTube -->
+            <a href="#" class="social youtube" title="YouTube">
+                <span>▶</span>
+            </a>
+
+            <!-- Facebook -->
+            <a href="#" class="social facebook" title="Facebook">
+                <span>f</span>
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Seller Account Box -->
+    <div class="seller-footer-box">
+        <div>
+            <h2>Sell with Lumiqart</h2>
+            <p>Create a seller account and start listing your fitness products on Lumiqart.</p>
+        </div>
+        <a href="seller-account.html" class="seller-account-btn">Create Seller Account</a>
+    </div>
+
+    <!-- Footer Links -->
+
+    <div class="footer-content">
+
+        <div class="footer-column">
+
+            <h3>Lumiqart</h3>
+
+            <p>
+                Your trusted destination for
+                quality fitness supplements.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>Categories</h3>
+
+            <a href="#categories" data-footer-category="Whey Protein">Whey Protein</a>
+            <a href="#categories" data-footer-category="Creatine">Creatine</a>
+            <a href="#categories" data-footer-category="Pre Workout">Pre Workout</a>
+            <a href="#categories" data-footer-category="Protein Oats">Protein Oats</a>
+            <a href="#categories" data-footer-category="Peanut Butter">Peanut Butter</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>Customer Support</h3>
+
+            <a href="help-center.html">Help Center & Chat</a>
+            <a href="shipping-delivery.html">Shipping & Delivery</a>
+            <a href="return-policy.html">Return Policy</a>
+            <a href="help-center.html#contact">Contact Lumiqart</a>
+
+        </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Copyright -->
+
+    <div class="copyright">
+
+        <p>
+            © 2026 Lumiqart. All Rights Reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+<script>
+/* LUMIQART CATEGORY FILTER */
+document.addEventListener("DOMContentLoaded", function () {
+    const categoryButtons = document.querySelectorAll(".category[data-category]");
+    const productCards = document.querySelectorAll(".product-card");
+    const note = document.getElementById("category-filter-note");
+    const showAll = document.getElementById("show-all-products");
+    const productsSection = document.querySelector(".products");
+
+    function normalize(value) {
+        return String(value || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+    }
+
+    function filterProducts(category) {
+        const target = normalize(category);
+        let visible = 0;
+
+        productCards.forEach(card => {
+            const categoryText = card.querySelector(".product-category")?.textContent || "";
+            const match = normalize(categoryText) === target;
+            card.style.display = match ? "block" : "none";
+            if (match) visible++;
+        });
+
+        categoryButtons.forEach(btn => {
+            btn.classList.toggle("active", normalize(btn.dataset.category) === target);
+        });
+
+        if (note) note.textContent = `Showing ${category} products (${visible})`;
+        if (productsSection) productsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function showAllProducts() {
+        productCards.forEach(card => card.style.display = "block");
+        categoryButtons.forEach(btn => btn.classList.remove("active"));
+        if (note) note.textContent = "Showing all products";
+        if (productsSection) productsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    categoryButtons.forEach(btn => {
+        btn.addEventListener("click", () => filterProducts(btn.dataset.category));
+    });
+
+    if (showAll) showAll.addEventListener("click", showAllProducts);
+
+    document.querySelectorAll("[data-footer-category]").forEach(link => {
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
+            filterProducts(this.dataset.footerCategory);
+        });
+    });
+});
+</script>
+<script src="cart.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const authNav = document.getElementById("auth-nav");
+
+    function updateAuthUI() {
+        const savedUser = localStorage.getItem("lumiqart_current_user");
+
+        if (!authNav) return;
+
+        if (savedUser) {
+            try {
+                const user = JSON.parse(savedUser);
+
+                authNav.innerHTML = `
+                    <span style="margin-right:10px; color:white;">
+                        Welcome, ${escapeHTML(user.name || "User")}
+                    </span>
+                    <button id="logout-btn" class="nav-login-btn">
+                        Logout
+                    </button>
+                `;
+
+                document.getElementById("logout-btn")
+                    .addEventListener("click", function () {
+                        localStorage.removeItem("lumiqart_current_user");
+                        updateAuthUI();
+                    });
+
+            } catch (error) {
+                localStorage.removeItem("lumiqart_current_user");
+                updateAuthUI();
+            }
+        } else {
+            authNav.innerHTML =
+                '<a href="login.html" class="nav-login-btn">Login</a>';
+        }
+    }
+
+    function escapeHTML(value) {
+        return String(value).replace(/[&<>"']/g, function (char) {
+            return {
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;"
+            }[char];
+        });
+    }
+
+    updateAuthUI();
+});
+</script>
+</body>
+</html>
